@@ -5,7 +5,7 @@
         width: 50%;
         height: 20px;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 20px;
     }
     .pokemon_layout-block {
         display: flex;
@@ -15,7 +15,7 @@
         margin-top: 5px;
         .pokemon_layout-filter {
             height: 100%;
-            width: 95%;
+            width: 90%;
             margin-top: 5px;
             line-height: 30px;
             z-index: 5;
@@ -51,7 +51,7 @@
         }
         .pokemon_layout-dropdown {
             height: 100%;
-            width: 5%;
+            width: 10%;
 
             .btn-group {
                 float: right;
