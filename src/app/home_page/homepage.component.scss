@@ -1,0 +1,121 @@
+.controls-top {
+    display: flex;
+    height: 30px;
+    float: right;
+}
+.homepage_layout {
+    margin-top: 10px;
+}
+.btn-floating {
+    margin-right: 10px;
+}
+.pokemon_layout {
+    width: 100%;
+    padding: 5px;
+    margin: 0 auto;
+}
+.poke_layout-seemore {
+    display: flex;
+    float: right;
+}
+.pokemon_layout-title {
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.pokemon_layout-card {
+    margin-top: 5px;
+    display: flex;
+    .card {
+        width: 25%;
+    }
+}
+.homepage_layout {
+    height: 80%;
+}
+.card-img-top {
+    cursor: pointer;
+}
+.card-body {
+    h4 {
+        cursor: pointer;
+    }
+    h4:hover {
+        color: blue;
+    }
+}
+.poke_layout {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .poke_layout-image {
+        width: 30%;
+        margin: auto;
+        height: 200px;
+        .carousel {
+            height: 100%;
+            .carousel-inner {
+                height: 100%;
+            }
+        }
+    }
+    .poke_layout-detail {
+        width: 70%;
+        height: 200px;
+        border-left: 0.5px solid #555555;
+        .detail_layout {
+            display: flex;
+            padding-left: 10px;
+            .detail-title {
+                width: 20%;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            .detail-content {
+                margin-left: 5px;
+                width: 80%;
+                margin-top: 5px;
+            }
+        }
+        .type_group {
+            display: flex;
+            padding-left: 5px;
+            .type_group-title {
+                width: 20%;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            .type_group-content {
+                width: 80%;
+                margin-top: 5px;
+            }
+        }
+    }
+    .poke_layout-other {
+        width: 100%;
+        height: 100px;
+        .detail-title {
+            width: 100%;
+            padding-left: 5px;
+            font-weight: bold;
+        }
+        .detail_layout {
+            display: flex;
+            padding-left: 5px;
+            margin-top: 10px;
+            .detail-content {
+                margin-left: 5px;
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                .detail-content-block {
+                    text-align: center;
+                    width: 10%;
+                    border: 0.3px solid black;
+                    color: #000;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,264 @@
+
+<div class="homepage_layout">
+    <!--Trailer-->
+    <div id="multi-item"
+         class="carousel slide carousel-multi-item"
+         data-ride="carousel">
+        <!--Slides-->
+        <div class="carousel-inner"
+             role="listbox">
+            <!--First slide-->
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/1roy4o4tqQM"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 clearfix d-none d-md-block">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/D0zYJ1RQ-fs"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 clearfix d-none d-md-block">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/bILE5BEyhdo"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/uBYORdr_TY8"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/1roy4o4tqQM"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 clearfix d-none d-md-block">
+                        <div class="card mb-2">
+                            <iframe width="600"
+                                    height="415"
+                                    src="https://www.youtube.com/embed/D0zYJ1RQ-fs"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/.Second slide-->
+
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <div class="controls-top">
+                <a class="btn-floating"
+                   href="#multi-item"
+                   data-slide="prev">Prev</a>
+                <a class="btn-floating"
+                   href="#multi-item"
+                   data-slide="next">Next</a>
+            </div>
+            <!--/.Controls-->
+        </div>
+        <!--/Trailer-->
+        <!--Pokemon List-->
+
+        <div class="pokemon_layout">
+            <div class="pokemon_layout-title">
+                Pokemons section
+            </div>
+            <div class="pokemon_layout-card">
+                <div class="card mb-2 text-center"
+                     *ngFor="let item of pokemons">
+                    <img class="card-img-top"
+                         data-toggle="modal"
+                         data-target="#myModal"
+                         [src]="item.image"
+                         (click)="renderDetail(item.name)"
+                         alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h4 class="card-title point-mouse"
+                            data-toggle="modal"
+                            data-target="#myModal"
+                            (click)="renderDetail(item.name)">{{item.name}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="poke_layout-seemore"><a href="#">See More</a></div>
+        </div>
+        <!--/Pokemon List.-->
+
+           <!--Pokemon List-->
+
+           <div class="pokemon_layout">
+            <div class="pokemon_layout-title">
+                Items section
+            </div>
+            <div class="pokemon_layout-card">
+                <div class="card m-auto"
+                     *ngFor="let item of items">
+                     <div style="width: 100%; text-align: center">
+                        <img class="card-img-top"
+                  
+                        style="width: 50%;"
+                        [src]="item.image"
+            
+                        alt="Card image cap">
+                     </div>
+                  
+                    <div class="card-body text-center">
+                        <h4 class="card-title point-mouse"
+                        
+                >{{item.name}}</h4>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--/Pokemon List.-->
+        <!--Detail dealog-->
+        <div class="modal fade"
+             id="myModal"
+             role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{pokemonDetail?.name}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="poke_layout">
+                            <div class="poke_layout-image">
+                                <div id="carouselExampleSlidesOnly"
+                                     class="carousel slide"
+                                     data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div [class]=" i > 0 ? 'carousel-item' : 'carousel-item active'"
+                                             *ngFor="let image of imageSprites(pokemonDetail?.sprites); let i = index">
+                                            <img class="d-block w-100"
+                                                 [src]="image?.url"
+                                                 alt="First slide">
+                                            <p style="text-align:center;">{{image?.gender}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="poke_layout-detail">
+                                <div class="type_group">
+                                    <div class="type_group-title">Type:</div>
+                                    <div class="type_group-content" >
+                                       <a *ngFor="let item of pokemonDetail?.types; let last = last"> {{last ? item.type.name : item.type.name + ','}} </a>
+                                    </div>
+                                </div>
+                                <div class="detail_layout">
+                                    <div class="detail-title">Weight:</div>
+                                    <div class="detail-content" >
+                                        <a>{{pokemonDetail?.weight}}</a>
+                                    </div>
+                                </div>
+                                <div class="detail_layout">
+                                    <div class="detail-title">Height:</div>
+                                    <div class="detail-content" >
+                                        <a>{{pokemonDetail?.height}}</a>
+                                    </div>
+                                </div>
+                                <div class="detail_layout">
+                                    <div class="detail-title">Exp:</div>
+                                    <div class="detail-content" >
+                                        <a>{{pokemonDetail?.base_experience}}</a>
+                                    </div>
+                                </div>
+                                <div class="detail_layout">
+                                    <div class="detail-title">Abilities: </div>
+                                    <div class="detail-content" >
+                                        <a *ngFor="let item of pokemonDetail?.abilities; let last = last"> {{last ? item.ability.name : item.ability.name + ','}} </a>
+                                    </div>
+                                </div>
+                                <div class="detail_layout">
+                                    <div class="detail-title">Held: </div>
+                                    <div class="detail-content" >
+                                        <ng-container *ngIf="pokemonDetail?.held_items.length > 0">
+                                            <a  
+                                            *ngFor="let item of pokemonDetail?.held_items; let last = last"> {{ last ? item.item.name : item.item.name + ','}} </a>
+                                        </ng-container>
+                                        <ng-container *ngIf="pokemonDetail?.held_items.length === 0">
+                                            <a  
+                                           > NO </a>
+                                        </ng-container>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="poke_layout-other">
+                                <div class="detail-title">Game Indices: </div>
+                                <div class="detail_layout">
+                                  
+                                    <div class="detail-content" >
+                                        <div class="detail-content-block"
+                                        [style]="{'background-color': item.version.name, 
+                                        'color': item.version.name === 'black'? 'white' : 'black' }"
+                                         *ngFor="let item of pokemonDetail?.game_indices; let last = last"> {{last ? item.game_index : item.game_index}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/Detail dealog-->
+    </div>
