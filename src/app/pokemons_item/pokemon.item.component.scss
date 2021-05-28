@@ -5,6 +5,7 @@
         width: 50%;
         height: 20px;
         font-weight: bold;
+        font-size: 25px;
     }
     .pokemon_layout-block {
         display: flex;
@@ -223,6 +224,7 @@
 }
 /* Mobile: width < 740px */
 @media only screen and (max-width: 46.1875em) {
+    .pokemon_layout-title { font-size: 15px !important;}
     .pokemon_layout-list {
         .pokemon_layout-card {
             .card {
@@ -253,7 +255,6 @@
         }
         .poke_layout-detail {
             width: 100%;
-            border-left: none;
             border-top: 0.5px solid #555555;
             border-bottom: 0.5px solid #555555;
             display: block;
