@@ -235,6 +235,9 @@
                 <div class="modal-body">
                     <div class="poke_layout">
                         <div class="poke_layout-image">
+                            <img class="d-block w-100 img_mobile"
+                            [src]="imageSprites(pokemonDetail?.sprites) && imageSprites(pokemonDetail?.sprites)[0]?.url"
+                            alt="First slide">
                             <div id="carouselExampleSlidesOnly"
                                  class="carousel slide"
                                  data-ride="carousel">
