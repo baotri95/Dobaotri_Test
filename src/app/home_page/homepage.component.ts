@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
     constructor(private pokemonService: PokemonService) {
     }
     ngOnInit(): void {
-        this.pokemonService.getPokemon(10, 10).subscribe((re) => {
+        this.pokemonService.getPokemon(10, 0).subscribe((re) => {
             const results = re.results;
             this.pokemons = results.map((p) => ({
                 name: p.name,

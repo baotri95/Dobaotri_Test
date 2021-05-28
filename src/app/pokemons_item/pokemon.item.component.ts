@@ -16,11 +16,12 @@ export class PokemonItemComponent implements OnInit {
     pageChange = 0;
     pokemonDetail: any;
     selectPage = 20;
+    limitPage = 20;
     constructor(private pokemonService: PokemonService) {
 
     }
     ngOnInit(): void {
-        this.pokemonService.getPokemon(600, 600).subscribe((re) => {
+        this.pokemonService.getPokemon(2500, 0).subscribe((re) => {
             const results = re.results;
             this.pokemons = results.map((p) => ({
                 name: p.name,
@@ -44,60 +45,25 @@ export class PokemonItemComponent implements OnInit {
     selectPokemon(numberPage): void {
         // use state
         this.selectPage = numberPage;
+        this.limitPage = numberPage;
         this.pageChange = 0;
         this.page = 1;
-        this.pokemonService.getPokemon(numberPage, 600).subscribe((re) => {
-            const results = re.results;
-            this.pokemons = results.map((p) => ({
-                name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
-                    + p.url.split('/')[p.url.split('/').length - 2] + '.png',
-                detail: p.url
-            }));
-
-            this.searchResult = results.map((p) => ({
-                name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
-                    + p.url.split('/')[p.url.split('/').length - 2] + '.png',
-                detail: p.url
-            }));
-        });
-    }
-    getData(valor, page): void {
-        this.pokemonService.getPokemon(valor, 600).subscribe((re) => {
-            const results = re.results;
-            // this.pokemons = results.map((p) => ({
-            //     name: p.name,
-            //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
-            //         + p.url.split('/')[p.url.split('/').length - 2] + '.png',
-            //     detail: p.url
-            // }));
-
-            // this.searchResult = results.map((p) => ({
-            //     name: p.name,
-            //     image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
-            //         + p.url.split('/')[p.url.split('/').length - 2] + '.png',
-            //     detail: p.url
-            // }));
-            this.page = this.page + page;
-            console.log(this.page);
-        });
+        this.mudouPagina({ valor: 1, pageChange: (this.page * this.limitPage) - this.limitPage });
     }
     mudouPagina(event): any {
         this.pageChange = event.pageChange ? event.pageChange : 0;
         if (event.valor > 1) {
             this.page = event.valor;
             if (event.pageChange === undefined) {
-                this.pageChange = this.pageChange + 20;
+                this.pageChange = this.pageChange + this.limitPage;
             }
             if (event.valor === this.totalPages) {
                 this.page = event.valor;
-                this.pageChange = ((this.page * 20) - 20); // max
-                console.log(this.pageChange);
+                this.pageChange = ((this.page * this.limitPage) - this.limitPage); // max
             }
         } else {
             if (event.pageChange === undefined) {
-                this.pageChange = this.pageChange - 20;
+                this.pageChange = this.pageChange - this.limitPage;
             }
             console.log(this.pageChange);
             if (event.valor === 1) {

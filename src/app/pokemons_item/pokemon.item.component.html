@@ -1,158 +1,170 @@
-
 <div class="pokemon_layout">
-  <div class="pokemon_layout-title">Pokemon List</div>
-  <div class="pokemon_layout-block">
-    <div class="pokemon_layout-filter">
-        <input class="search-input" 
-         type="text" name="search" [(ngModel)]="searchParams" (ngModelChange)="changeSearchParams($event)" autocomplete="off" placeholder="Search">
-    </div>
-    <div class="pokemon_layout-dropdown">
-      <div class="btn-group">
-    
-            <button type="button" class="btn btn-select dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{selectPage}}
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" *ngFor="let item of [10,20,50,100, 200]"  (click)="selectPokemon(item)">{{item}}</a>
-    
+    <div class="pokemon_layout-title">Pokemon List</div>
+    <div class="pokemon_layout-block">
+        <div class="pokemon_layout-filter">
+            <input class="search-input"
+                   type="text"
+                   name="search"
+                   [(ngModel)]="searchParams"
+                   (ngModelChange)="changeSearchParams($event)"
+                   autocomplete="off"
+                   placeholder="Search">
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="pokemon_layout-list" id="scroll">
-    <div class="pokemon_layout-card">
-        <div class="card mb-2 text-center"
-             *ngFor="let item of pokemons | filter:searchParams| slice: pageChange | slice: 0: 20 ">
-            <img class="card-img-top"
-            [src]="item.image"
-            data-toggle="modal"
-            data-target="#myModal"
-            [src]="item.image"
-            (click)="renderDetail(item.name)"
-                 alt="Card image cap">
-            <div class="card-body text-center">
-                <h4 class="card-title point-mouse" data-toggle="modal"
-                data-target="#myModal"
-                (click)="renderDetail(item.name)">{{item.name}}</h4>
+        <div class="pokemon_layout-dropdown">
+            <div class="btn-group">
+
+                <button type="button"
+                        class="btn btn-select dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    {{selectPage}}
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                       *ngFor="let item of [10,20,50,100]"
+                       (click)="selectPokemon(item)">{{item}}</a>
+
+                </div>
             </div>
         </div>
     </div>
+    <div class="pokemon_layout-list"
+         id="scroll">
+        <div class="pokemon_layout-card">
+            <div class="card mb-2 text-center"
+                 *ngFor="let item of pokemons | filter:searchParams| slice: pageChange | slice: 0: limitPage ">
+                <img class="card-img-top"
+                     [src]="item.image"
+                     data-toggle="modal"
+                     data-target="#myModal"
+                     [src]="item.image"
+                     (click)="renderDetail(item.name)"
+                     alt="Card image cap">
+                <div class="card-body text-center">
+                    <h4 class="card-title point-mouse"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                        (click)="renderDetail(item.name)">{{item.name}}</h4>
+                </div>
+            </div>
+        </div>
 
-  </div>
-  <div class="pokemon_layout-page" *ngIf=" pokemons?.length > 20 && searchParams.length === 0">
-    <!-- <nav aria-label="Page navigation example" style="margin-left: 5px;">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#"mudouPagina>Previous</a></li>
-          <li *ngFor="let page of pokemons " class="page-item"><a class="page-link" href="#">{{page}}</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav> -->
-      <app-pagination [page]="page"  [total]="pokemons?.length"
-      [pageChange]="pageChange"
-      [totalPages]="pokemons?.length/20"  (mudouPagina)="mudouPagina($event)"></app-pagination>
-  </div>
-  <div class="no-data"  *ngIf="pokemons?.length === 0" >
-       <p>No Data</p>
-  </div>
+    </div>
+    <div class="pokemon_layout-page"
+         *ngIf=" pokemons?.length > 20 && searchParams.length === 0">
+        <app-pagination [page]="page"
+                        [total]="pokemons?.length"
+                        [pageChange]="pageChange"
+                        [limitPage]="limitPage"
+                        [totalPages]="limitPage > 50 ? pokemons?.length/limitPage+1 :  pokemons?.length/limitPage "
+                        (mudouPagina)="mudouPagina($event)"></app-pagination>
+    </div>
+    <div class="no-data"
+         *ngIf="pokemons?.length === 0">
+        <p>No Data</p>
+    </div>
 
 </div>
 
-   <!--Detail dealog-->
-   <div class="modal fade"
-   id="myModal"
-   role="dialog">
-  <div class="modal-dialog">
+<!--Detail dealog-->
+<div class="modal fade"
+     id="myModal"
+     role="dialog">
+    <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title">{{pokemonDetail?.name}}</h4>
-          </div>
-          <div class="modal-body">
-              <div class="poke_layout">
-                  <div class="poke_layout-image">
-                      <div id="carouselExampleSlidesOnly"
-                           class="carousel slide"
-                           data-ride="carousel">
-                          <div class="carousel-inner">
-                              <div [class]=" i > 0 ? 'carousel-item' : 'carousel-item active'"
-                                   *ngFor="let image of imageSprites(pokemonDetail?.sprites); let i = index">
-                                  <img class="d-block w-100"
-                                       [src]="image?.url"
-                                       alt="First slide">
-                                  <p style="text-align:center;">{{image?.gender}}</p>
-                              </div>
-                             
-                          </div>
-                      </div>
-                  </div>
-                  <div class="poke_layout-detail">
-                      <div class="type_group">
-                          <div class="type_group-title">Type:</div>
-                          <div class="type_group-content" >
-                             <a *ngFor="let item of pokemonDetail?.types; let last = last"> {{last ? item.type.name : item.type.name + ','}} </a>
-                          </div>
-                      </div>
-                      <div class="detail_layout">
-                          <div class="detail-title">Weight:</div>
-                          <div class="detail-content" >
-                              <a>{{pokemonDetail?.weight}}</a>
-                          </div>
-                      </div>
-                      <div class="detail_layout">
-                          <div class="detail-title">Height:</div>
-                          <div class="detail-content" >
-                              <a>{{pokemonDetail?.height}}</a>
-                          </div>
-                      </div>
-                      <div class="detail_layout">
-                          <div class="detail-title">Exp:</div>
-                          <div class="detail-content" >
-                              <a>{{pokemonDetail?.base_experience}}</a>
-                          </div>
-                      </div>
-                      <div class="detail_layout">
-                          <div class="detail-title">Abilities: </div>
-                          <div class="detail-content" >
-                              <a *ngFor="let item of pokemonDetail?.abilities; let last = last"> {{last ? item.ability.name : item.ability.name + ','}} </a>
-                          </div>
-                      </div>
-                      <div class="detail_layout">
-                          <div class="detail-title">Held: </div>
-                          <div class="detail-content" >
-                              <ng-container *ngIf="pokemonDetail?.held_items.length > 0">
-                                  <a  
-                                  *ngFor="let item of pokemonDetail?.held_items; let last = last"> {{ last ? item.item.name : item.item.name + ','}} </a>
-                              </ng-container>
-                              <ng-container *ngIf="pokemonDetail?.held_items.length === 0">
-                                  <a  
-                                 > NO </a>
-                              </ng-container>
-                            
-                          </div>
-                      </div>
-                  </div>
-                  <div class="poke_layout-other">
-                      <div class="detail-title">Game Indices: </div>
-                      <div class="detail_layout">
-                        
-                          <div class="detail-content" >
-                              <div class="detail-content-block"
-                              [style]="{'background-color': item.version.name, 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{pokemonDetail?.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="poke_layout">
+                    <div class="poke_layout-image">
+                        <div id="carouselExampleSlidesOnly"
+                             class="carousel slide"
+                             data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div [class]=" i > 0 ? 'carousel-item' : 'carousel-item active'"
+                                     *ngFor="let image of imageSprites(pokemonDetail?.sprites); let i = index">
+                                    <img class="d-block w-100"
+                                         [src]="image?.url"
+                                         alt="First slide">
+                                    <p style="text-align:center;">{{image?.gender}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="poke_layout-detail">
+                        <div class="type_group">
+                            <div class="type_group-title">Type:</div>
+                            <div class="type_group-content">
+                                <a *ngFor="let item of pokemonDetail?.types; let last = last"> {{last ? item.type.name :
+                                    item.type.name + ','}} </a>
+                            </div>
+                        </div>
+                        <div class="detail_layout">
+                            <div class="detail-title">Weight:</div>
+                            <div class="detail-content">
+                                <a>{{pokemonDetail?.weight}}</a>
+                            </div>
+                        </div>
+                        <div class="detail_layout">
+                            <div class="detail-title">Height:</div>
+                            <div class="detail-content">
+                                <a>{{pokemonDetail?.height}}</a>
+                            </div>
+                        </div>
+                        <div class="detail_layout">
+                            <div class="detail-title">Exp:</div>
+                            <div class="detail-content">
+                                <a>{{pokemonDetail?.base_experience}}</a>
+                            </div>
+                        </div>
+                        <div class="detail_layout">
+                            <div class="detail-title">Abilities: </div>
+                            <div class="detail-content">
+                                <a *ngFor="let item of pokemonDetail?.abilities; let last = last"> {{last ?
+                                    item.ability.name : item.ability.name + ','}} </a>
+                            </div>
+                        </div>
+                        <div class="detail_layout">
+                            <div class="detail-title">Held: </div>
+                            <div class="detail-content">
+                                <ng-container *ngIf="pokemonDetail?.held_items.length > 0">
+                                    <a *ngFor="let item of pokemonDetail?.held_items; let last = last"> {{ last ?
+                                        item.item.name : item.item.name + ','}} </a>
+                                </ng-container>
+                                <ng-container *ngIf="pokemonDetail?.held_items.length === 0">
+                                    <a> NO </a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="poke_layout-other">
+                        <div class="detail-title">Game Indices: </div>
+                        <div class="detail_layout">
+
+                            <div class="detail-content">
+                                <div class="detail-content-block"
+                                     [style]="{'background-color': item.version.name, 
                               'color': item.version.name === 'black'? 'white' : 'black' }"
-                               *ngFor="let item of pokemonDetail?.game_indices; let last = last"> {{last ? item.game_index : item.game_index}} </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button"
-                      class="btn btn-default"
-                      data-dismiss="modal">Close</button>
-          </div>
-      </div>
+                                     *ngFor="let item of pokemonDetail?.game_indices; let last = last"> {{last ?
+                                    item.game_index : item.game_index}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">Close</button>
+            </div>
+        </div>
 
-  </div>
+    </div>
 </div>
 <!--/Detail dealog-->

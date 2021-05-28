@@ -14,6 +14,8 @@ export class PaginationComponent implements OnInit, OnChanges {
     arrayPages: number[];
     @Input()
     pageChange = 0;
+    @Input()
+    limitPage = 20;
     @Output() mudouPagina = new EventEmitter();
     linkNulo = 'javascript:void(0)';
 
@@ -45,14 +47,14 @@ export class PaginationComponent implements OnInit, OnChanges {
 
     proxPagina(): void {
         if (this.page < this.totalPages) {
-            this.mudaPag(this.page + 1, this.pageChange + 20);
+            this.mudaPag(this.page + 1, this.pageChange + this.limitPage);
         }
 
     }
 
     paginaAnt(): void {
         if (this.page > 1) {
-            this.mudaPag(this.page - 1, this.pageChange - 20);
+            this.mudaPag(this.page - 1, this.pageChange - this.limitPage);
         }
     }
 
@@ -61,7 +63,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     }
 
     ultimaPag(): void {
-        this.mudaPag(this.totalPages, (this.totalPages * 20) - 20);
+        this.mudaPag(this.totalPages, (this.totalPages * this.limitPage) - this.limitPage);
     }
 
     diminuiPaginacao(pags): any {
