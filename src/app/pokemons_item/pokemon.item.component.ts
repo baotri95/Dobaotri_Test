@@ -45,6 +45,7 @@ export class PokemonItemComponent implements OnInit {
         // use state
         this.selectPage = numberPage;
         this.pageChange = 0;
+        this.page = 1;
         this.pokemonService.getPokemon(numberPage, 600).subscribe((re) => {
             const results = re.results;
             this.pokemons = results.map((p) => ({
