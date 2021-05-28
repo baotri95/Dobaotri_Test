@@ -90,9 +90,10 @@ export class PokemonItemComponent implements OnInit {
             if (event.pageChange === undefined) {
                 this.pageChange = this.pageChange + 20;
             }
-            if (event.valor === 10) {
+            if (event.valor === this.totalPages) {
                 this.page = event.valor;
-                this.pageChange = 180; // max
+                this.pageChange = ((this.page * 20) - 20); // max
+                console.log(this.pageChange);
             }
         } else {
             if (event.pageChange === undefined) {

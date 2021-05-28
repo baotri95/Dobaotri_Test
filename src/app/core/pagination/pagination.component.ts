@@ -40,7 +40,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     }
 
     mudaPag(pag: number, pageChange): void {
-        this.mudouPagina.emit({ valor: pag, pageChange});
+        this.mudouPagina.emit({ valor: pag, pageChange });
     }
 
     proxPagina(): void {
@@ -61,7 +61,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     }
 
     ultimaPag(): void {
-        this.mudaPag(this.totalPages, this.total - 20);
+        this.mudaPag(this.totalPages, (this.totalPages * 20) - 20);
     }
 
     diminuiPaginacao(pags): any {
