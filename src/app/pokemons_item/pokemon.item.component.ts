@@ -9,13 +9,13 @@ export class PokemonItemComponent implements OnInit {
     pokemons: any[];
     searchParams = '';
     searchResult: any[] = [];
-    page = 1;;
+    page = 1;
     perPage: number;
     total: number;
     totalPages: number;
     pageChange = 0;
     pokemonDetail: any;
-    selectPage = 200;
+    selectPage = 20;
     constructor(private pokemonService: PokemonService) {
 
     }
