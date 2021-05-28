@@ -15,7 +15,7 @@ import {PokemonService} from '../services/pokemon.service';
     HeaderComponent,
     FooterComponent,
     NavigatorComponent,
-    LayoutComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

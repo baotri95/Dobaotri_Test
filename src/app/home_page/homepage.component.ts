@@ -34,7 +34,6 @@ export class HomePageComponent implements OnInit {
     }
     renderDetail(name): void {
         this.pokemonService.getPokemonByName(name).subscribe(data => {
-            console.log('=>>>', data);
             this.pokemonDetail = data;
         });
     }

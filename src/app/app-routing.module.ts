@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '', children: [
-      { path: 'home', loadChildren: () => import('./home_page/homepage.module').then(m => m.HomePageModule) }
+      { path: 'home', loadChildren: () => import('./home_page/homepage.module').then(m => m.HomePageModule) },
+      { path: 'pokemon-list', loadChildren: () => import('./pokemons_item/pokemon.item.module').then(m => m.PokemonItemModule) }
     ]
   }
 ];
