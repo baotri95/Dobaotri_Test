@@ -20,46 +20,50 @@ export class PokemonItemComponent implements OnInit {
 
     }
     ngOnInit(): void {
-        this.pokemonService.getPokemon(200, 200).subscribe((re) => {
+        this.pokemonService.getPokemon(600, 600).subscribe((re) => {
             const results = re.results;
             this.pokemons = results.map((p) => ({
                 name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
                     + p.url.split('/')[p.url.split('/').length - 2] + '.png',
                 detail: p.url
             }));
 
             this.searchResult = results.map((p) => ({
                 name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
                     + p.url.split('/')[p.url.split('/').length - 2] + '.png',
                 detail: p.url
             }));
         });
     }
+    changeSearchParams(event): void {
+        this.pageChange = 0;
+        this.page = 1;
+    }
     selectPokemon(numberPage): void {
         // use state
         this.selectPage = numberPage;
         this.pageChange = 0;
-        this.pokemonService.getPokemon(numberPage, 200).subscribe((re) => {
+        this.pokemonService.getPokemon(numberPage, 600).subscribe((re) => {
             const results = re.results;
             this.pokemons = results.map((p) => ({
                 name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
                     + p.url.split('/')[p.url.split('/').length - 2] + '.png',
                 detail: p.url
             }));
 
             this.searchResult = results.map((p) => ({
                 name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
                     + p.url.split('/')[p.url.split('/').length - 2] + '.png',
                 detail: p.url
             }));
         });
     }
     getData(valor, page): void {
-        this.pokemonService.getPokemon(valor, 200).subscribe((re) => {
+        this.pokemonService.getPokemon(valor, 600).subscribe((re) => {
             const results = re.results;
             // this.pokemons = results.map((p) => ({
             //     name: p.name,

@@ -17,7 +17,7 @@ export class HomePageComponent implements OnInit {
             const results = re.results;
             this.pokemons = results.map((p) => ({
                 name: p.name,
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
                     + p.url.split('/')[p.url.split('/').length - 2] + '.png',
                 detail: p.url
             }));

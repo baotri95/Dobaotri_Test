@@ -4,7 +4,7 @@
   <div class="pokemon_layout-block">
     <div class="pokemon_layout-filter">
         <input class="search-input" 
-         type="text" name="search" [(ngModel)]="searchParams" autocomplete="off" placeholder="Search">
+         type="text" name="search" [(ngModel)]="searchParams" (ngModelChange)="changeSearchParams($event)" autocomplete="off" placeholder="Search">
     </div>
     <div class="pokemon_layout-dropdown">
       <div class="btn-group">

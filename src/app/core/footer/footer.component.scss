@@ -1,0 +1,19 @@
+.footer_layout {
+    height: 4em;
+    background: #1abc9c;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    .title {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        p {
+            margin-top: 25px;
+            color: rgb(255, 255, 255);
+        }
+    }
+}
